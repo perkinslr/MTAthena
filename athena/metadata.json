@@ -1,0 +1,7 @@
+{
+    "name": "Athena RPC",
+    "author": "Logan Perkins (lperkins2)",
+    "license": "ZLIB",
+    "description": "A Remote Procedure Call (RPC) library to allow integrated Javascript and html5 Javascript to communicate, including between maptool clients.  Inspired by the Nevow Athena project.",
+    "version": "0.0.1"
+}
