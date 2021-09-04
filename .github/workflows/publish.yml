@@ -18,13 +18,13 @@ jobs:
         python3 -m pip install twisted
     - name: build
       run: |
-        python3 -m TokenGenerator.TokenGenerator athena ~/athena.tokens --generate-zip=True
+        python3 -m TokenGenerator.TokenGenerator $(for f in ./*/; do echo $f | grep -v TokenGenerator; done) ~/tokens --generate-zip=True
         
     - name: package
       run: |
-        mkdir ~/tokens
-        cp ~/athena.tokens/*.rptok ~/tokens
-        pushd ~/tokens
+        mkdir ~/tokens.export
+        cp ~/tokens/*.rptok ~/tokens.export
+        pushd ~/tokens.export
         zip /tmp/tokens.zip ./*
     - name: Upload Package
       id: upload-package
