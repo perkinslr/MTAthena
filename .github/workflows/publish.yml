@@ -26,5 +26,5 @@ jobs:
       with:
         upload_url: ${{ github.event.release.upload_url }}
         asset_path: /tmp/mtathena.mtlib
-        asset_name: Tokens-${{ github.event.release.tag_name }}.mtlib
+        asset_name: MTAthena-${{ github.event.release.tag_name }}.mtlib
         asset_content_type: application/octet-stream
