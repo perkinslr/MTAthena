@@ -1,0 +1,14 @@
+{
+    "name": "lib:lp-programming.athena",
+    "version": "0.0.1",
+    "website": "maptool.lp-programming.com",
+    "gitUrl": "https://github.com/perkinslr/MTAthena",
+    "authors": ["Logan Perkins"],
+    "license": "ZLib",
+    "namespace": "com.lp-programming.maptool.athena",
+    "description": "Adds a set of JS primitives for RPC, both between players and from the graalvm context to html5 contexts\nDepends on lib:lp-programming.utils",
+    "shortDescription": "Adds a set of JS primitives for RPC",
+    "allowsUriAccess": true,
+    "licenseFile": "license.txt",
+    "readMeFile": "README"
+}
