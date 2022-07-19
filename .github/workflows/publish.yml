@@ -25,6 +25,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ github.event.release.upload_url }}
-        asset_path: /tmp/tokens.mtlib
+        asset_path: /tmp/mtathena.mtlib
         asset_name: Tokens-${{ github.event.release.tag_name }}.mtlib
         asset_content_type: application/octet-stream
