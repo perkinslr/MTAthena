@@ -1,35 +1,22 @@
-# Get which player is hosting the server
+# MT Athena
+[Inspired by Divmod Nevow's Athena Live Page.](https://github.com/perkinslr/nevow-py3)
 
-The js UDF `[r: js.getServer()]` will give you the name of the player running the server.
+This framework provides easy remote-procedure calls between HTML5 javascript contexts and the graalvm context running in MapTool.
+It *also* provides similar RPCs between graalvm-js running on the hosting MT instance and graalvm-js running on client MT instances.
+This allows state to be tracked in exactly one place: the server, and then views into the state to be given to players, and updated in real-time.
 
 
-# Dynamic frame data in lib:frames
+## Usage
 
-You can use the JS UDF for dynamically passing data into frames created by
-`[r: html.frame5(...)]`.  To use it, replace html.frame5 with js.makeFrame5, and
-the same parameters as you would pass to html.frame5
+This framework is designed to be injected into a javascript context, for use in other frameworks.
+Until framework dependencies and cross-framework inheritance are implemented, you may need to manually resolve the order.
+Injecting athena into a namespace is done via `[r: js.injectAthena(namespace)]`, it will create the namespace if it doesn't already exist.
 
-In the html frame opened, you *must* include the script
+## Demo
+
+There is a calculator demo, heavily inspired by Nevow's calculator demo, which can be started via
+
 ```
-<script type="text/javascript" src="lib://com.lp-programming.maptool.jsFrame/fetchUserProperties.js?cachelib=false" >
-</script>
+[r: js.injectAthena("testNamespace")]
+[r: js.evalURI("testNamespace","lib://com.lp-programming.maptool.athena/athenaDemo.js")]
 ```
-
-!!!Note that you cannot use <script />!!!
-This script should be included as high up as you can.  If you do something that
-keeps it from running, it will break the internal state. You can reset the internal
-state by running `[r: js.resetFrameStack()]`.  Do this if your frames aren't
-initializing properly.
-
-The above script creates a top level Promise called `UserData` which resolves
-with the third parameter to the html.frame5 call.  So somewhere on your page
-you can access it like so
-```
-<script delay type="text/javascript">
-UserData.then((ud) => {
-  console.log("My user data is "+ud)
-})
-</script>
-```
-You can see it in action via
-`[r: js.makeFrame5("exampleFrame", "lib://com.lp-programming.maptool.utils/Page.html", getUserName())]`
