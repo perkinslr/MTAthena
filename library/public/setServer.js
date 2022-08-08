@@ -11,6 +11,7 @@ function errorWrapper(fn) {
     return fn
 }
 
+console.log("loading athena");
 try {
     let serverInfo = JSON.parse(""+MTScript.evalMacro(`[r: getInfo("server")]`))
     let isServer = serverInfo['personal server'] || serverInfo['hosting server']
@@ -28,6 +29,7 @@ try {
     }
 
     function setServer(name) {
+	console.log("setting server name to "+name);
 	serverName = name
     }
 
@@ -41,6 +43,7 @@ try {
 	    let target_name = args[2]
 		
 	    if (isServer) {
+		console.log("responding with server name");
 		let playerName = MTScript.evalMacro(`[r: getPlayerName()]`)
 		let link = `macro://${response_macro}@lib:${macro_library}/none/Impersonated?${playerName}`
 		MTScript.setVariable("link", link)
@@ -60,6 +63,7 @@ try {
     MTScript.registerMacro("sendServer", errorWrapper(sendServer))
 
     if (!isServer) {
+	console.log("requesting server info");
 	let playerName = MTScript.evalMacro(`[r: getPlayerName()]`)
 	let link = "macro://GetServer@lib:com.lp-programming.maptool.athena/none/Impersonated?SetServer,com.lp-programming.maptool.athena," + playerName
 	MTScript.setVariable("link", link)

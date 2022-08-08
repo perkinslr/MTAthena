@@ -57,36 +57,6 @@ catch (e) {
     MapTool.chat.broadcast(e.stack)
 }
 
-/*
-let playerName = MTScript.evalMacro('[r: playerName()]')
-let athenaServer = null
-let athenaClient
-
-
-
-if (isServer) {
-    load("com.lp-programming.maptool.athena", "/public/athenaServer.js")
-    athenaServer = new AthenaServer()
-    athenaClient = new AthenaClient(true, athenaServer)
-}
-else
-{
-    let link = "macro://GetServer@lib:com.lp-programming.maptool.utils/none/Impersonated?SetServer,com.lp-programming.maptool.athena,"+playerName
-    MTScript.setVariable("link", link)
-    MTScript.evalMacro(`[h: execLink(link, 1, "all")]`)
-}
-
-function initAthena() {
-    serverName = MTScript.getMTScriptCallingArgs()[0]
-    athenaClient = new AthenaClient(false, serverName)
-}
-
-
-
-
-*/
-
-
 function load(namespace, scriptName) {
     MTScript.setVariable("namespace", namespace);
     MTScript.setVariable("scriptName", scriptName);
