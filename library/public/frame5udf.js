@@ -6,7 +6,10 @@ function makeHtml5(kind, name, location, userdata) {
     FrameProperties.push([kind, name, userdata])
     frameCounter++
     console.log("Frame counter: "+frameCounter);
-    MTScript.evalMacro(`[r: html.${kind}5("${name}", "${location}", '${userdata}')]`)
+    if (kind != "overlay") {
+	kind += "5";
+    }
+    MTScript.evalMacro(`[r: html.${kind}("${name}", "${location}", '${userdata}')]`)
     console.log("waiting for "+frameCounter+" frames")
 }
 
