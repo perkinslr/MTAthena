@@ -20,6 +20,7 @@ class AthenaPage {
 	this.parent = parent
 	parent.registerAthenaPage(this.peerID, this)
 	this._transport = new ReliableMessageDelivery(this.peerID, this, [this.html5Type, this.html5Name])
+	return this;
     }
 
     doCall(procedure, args) {
@@ -31,11 +32,12 @@ class AthenaPage {
     }
 
     renderLivePage() {
-	MTScript.setVariable("pageType", this.html5Type)
-	MTScript.setVariable("pageName", this.html5Name)
-	MTScript.setVariable("pageURI", this.docFactory)
-	MTScript.setVariable("userdata", [this.peerID, this.jsIncludes, this.jsClass, namespace])
-	return MTScript.evalMacro("[r: js.makeHtml5(pageType, pageName, pageURI, userdata)]")
+	MTScript.setVariable("pageType", this.html5Type);
+	MTScript.setVariable("pageName", this.html5Name);
+	MTScript.setVariable("pageURI", this.docFactory);
+	MTScript.setVariable("userdata", [this.peerID, this.jsIncludes, this.jsClass, namespace]);
+	MTScript.evalMacro("[r: js.makeHtml5(pageType, pageName, pageURI, userdata)]");
+	return this;
     }
 
     connectionLost(reason) {}
